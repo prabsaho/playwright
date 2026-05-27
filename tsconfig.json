@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "types": ["node", "exceljs"],
+    // "target": "esnext",
+    // "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
+  // "allowSyntheticDefaultImports": true
+  // "include": ["quality_assurance/**/**/*.ts"],
+}
