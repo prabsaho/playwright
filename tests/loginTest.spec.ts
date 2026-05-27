@@ -9,7 +9,7 @@ test.describe("Login Page Test Cases", () => {
   test.beforeEach(async ({ pageObjects }) => {
     await test.step("Open RahulShetty Login Page", async () => {
       await pageObjects.basePage.openUrl(decrypt(process.env.baseUrl!));
-      await pageObjects.loginPage.loginToLoginPractice(decrypt(process.env.userName!), decrypt(process.env.password!));
+      // await pageObjects.loginPage.loginToLoginPractice(decrypt(process.env.userName!), decrypt(process.env.password!));
     });
   });
 

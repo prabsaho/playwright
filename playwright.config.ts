@@ -31,8 +31,8 @@ import { Timeouts } from "./utils/commonUtils";
 export default defineConfig({
   testDir: "./tests",
 
-  // globalSetup: require.resolve("./global-setup.ts"),
-  // globalTeardown: require.resolve("./global-teardown.ts"),
+  globalSetup: require.resolve("./global-setup.ts"),
+  globalTeardown: require.resolve("./global-teardown.ts"),
 
   /* Run tests in files in parallel */
   fullyParallel: true,
