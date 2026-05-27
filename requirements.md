@@ -1,8 +1,9 @@
 ## Execution Guidelines
 
-Before running the test cases, set the environment variable.
+Before running the test cases, set the environment variable & browser.
 
 For QA, use **`NODE_ENV=qa`**.
+For Firefox  use **`set BROWSER_TYPE=firefox`**.
 
 Run the test cases using the following commands:
 

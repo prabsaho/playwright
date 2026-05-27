@@ -1,8 +1,4 @@
 import { defineConfig, devices } from "@playwright/test";
-import {
-  getDeviceDescription,
-  ProcessEnvironmentConfiguration,
-} from "./utils/testUtils";
 import { Timeouts } from "./utils/commonUtils";
 
 /**
@@ -52,15 +48,15 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: ProcessEnvironmentConfiguration.baseUrl,
+    baseURL: process.env.baseUrl,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
 
-    browserName: ProcessEnvironmentConfiguration.browserType,
-    ...devices[getDeviceDescription()],
-    headless: ProcessEnvironmentConfiguration.headless,
-    // storageState: `./storage/${ProcessEnvironmentConfiguration.browserType}-storageState.json`,
+    browserName: (process.env.BROWSER_TYPE || 'chromium') as 'chromium' | 'firefox' | 'webkit',
+    ...devices['Desktop Chrome'],
+    headless: process.env.HEADLESS !== 'false',
+    // storageState: `./storage/${process.env.BROWSER_TYPE || 'chromium'}-storage-state.json`,
     screenshot: { mode: "only-on-failure", fullPage: true },
     video: "on-first-retry",
     actionTimeout: Timeouts.DefaultWaitTime,
