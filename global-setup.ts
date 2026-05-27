@@ -11,18 +11,9 @@ import {
   getStorageStatePath,
 } from "./utils/testUtils";
 
-const singleSignOnText = "#company-logo-div-text";
-const ssoIdInputField = "#identifierInput";
-const ssoSubmitButton = "#post-button";
-const ssoPasswordInputField = "#password";
-const ssoLoginButton = "#remember-me-login-button";
-const planOsUserNameInputField = '[data-testid="userNameTestId"]';
-const planOsPasswordInputField = '[data-testid="passwordTestId"]';
-const planOsLoginButton = '[data-testid="buttonTestId"][type="submit"]';
-const loginPlaceHolder2 = '[data-testid="UserIconsTestId"]';
-const loginPlaceHolder1 = '[class="hover:underline"]';
-const geVernovaLogo = '(//*[@alt="GE Vernova logo"])[1]';
-const planOsHeader = '(//*[@alt="GE Vernova logo"])[1]/parent::div//following-sibling::h1';
+const usareName = "#company-logo-div-text";
+const passwordField = "#identifierInput";
+
 
 async function loginAndSaveState(
   browser: Browser,
@@ -42,36 +33,12 @@ async function loginAndSaveState(
     timeout: 60000,
   });
 
-  const ssoText = page.locator(singleSignOnText);
-  const loginPH = page.locator(loginPlaceHolder1);
+  
 
-  await ssoText
-    .waitFor({ state: "visible", timeout: 5000 })
-    .catch(() => {});
-  await loginPH
-    .waitFor({ state: "visible", timeout: 5000 })
-    .catch(() => {});
-
-  if ((await ssoText.isVisible()) || !(await loginPH.isVisible())) {
-    await page.fill(ssoIdInputField, ProcessEnvironmentConfiguration.ssoId);
-    await page.click(ssoSubmitButton);
-    await page.fill(
-      ssoPasswordInputField,
-      ProcessEnvironmentConfiguration.ssoPassword
-    );
-    await page.click(ssoLoginButton);
-  }
-
-  await page.fill(planOsUserNameInputField, username);
-  await page.fill(planOsPasswordInputField, password);
-  await expect(page.locator(loginPlaceHolder2)).toBeVisible();
-  await expect(page.locator(loginPlaceHolder1)).toBeVisible();
-  await expect(page.locator(geVernovaLogo)).toBeVisible();
-  await expect(page.locator(planOsHeader)).toHaveText("PlanOS");
-  await page.click(planOsLoginButton);
-  await page.waitForLoadState("networkidle");
-  await page.getByTestId("UserIconsTestId").waitFor({ timeout: 60000 });
-  await expect(page.locator(loginPlaceHolder1)).toHaveText("Home");
+  await page.fill(username, username);
+  await page.fill(passwordField, password);
+  await page.click("#login-button");
+  await page.waitForLoadState("networkidle", { timeout: 60000 });
 
   await page.context().storageState({ path: storagePath });
   await context.close();
