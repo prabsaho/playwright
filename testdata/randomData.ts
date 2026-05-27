@@ -1,6 +1,6 @@
 import { randomStringGen } from "../utils/randomUtils";
 
-const randomString = randomStringGen(3);
+const randomString = randomStringGen(4);
 
 export const adminPageData = {
   adminPageHeader: "Admin",
@@ -14,8 +14,6 @@ export const adminPageData = {
   notificationWarningFailedSolutionDays: "4 Days",
   deleteSuccessSolutionDays: "2 Days",
   notificationWarningSuccessSolutionDays: "2 Days",
-  solutionQueueErrorMessage:
-    "An error occurred trying to create a new solution queue.",
   mainPage: {
     tabs: ["Configuration", "Groups", "Users", "Queues", "Projects"],
   },
@@ -55,20 +53,6 @@ export const adminPageData = {
       groupIAM: "group_all",
       groupName: "Group All",
       groupDescription: "Group with users: ['A', 'L', 'L']",
-    },
-  },
-  usersTab: {
-    newUser: {
-      inputFieldLabels: [
-        "Identity Access Account",
-        "PlanOS User Name",
-        "Email",
-        "PlanOS Administrator",
-      ],
-      userIAMSearchText: "user",
-      userIAM: "user_auto5",
-      userName: "User Auto 5",
-      userEmail: "user_auto5@dummy.dummy",
     },
   },
   queuesTab: {

@@ -37,8 +37,6 @@ async function loginAndSaveState(
 
   await page.fill(username, username);
   await page.fill(passwordField, password);
-  await page.click("#login-button");
-  await page.waitForLoadState("networkidle", { timeout: 60000 });
 
   await page.context().storageState({ path: storagePath });
   await context.close();

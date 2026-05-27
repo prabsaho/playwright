@@ -16,6 +16,18 @@ import { Timeouts } from "./utils/commonUtils";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+    if (!process.env.NODE_ENV) {
+      require("dotenv").config({
+        path: `${__dirname}//config//.env`,
+        override: true,
+      });
+    } else {
+      require("dotenv").config({
+        path: `${__dirname}//config//.env.${process.env.NODE_ENV}`,
+        override: true,
+      });
+    }
 export default defineConfig({
   testDir: "./tests",
 
